@@ -1,0 +1,64 @@
+# ClinicMind IA - Règles Cursor
+
+## Contexte Projet
+Tu travailles sur ClinicMind IA, un logiciel de gestion de cabinet dentaire avec IA intégrée.
+- **Stack Frontend** : React 18 + TypeScript + Tailwind CSS + shadcn/ui
+- **Stack Backend** : Python + FastAPI + PostgreSQL
+- **Domaine** : Santé / Dentisterie - données ultra-sensibles
+
+## Règles de Code Obligatoires
+
+### TypeScript
+- Toujours utiliser le mode strict
+- Jamais de `any` - utiliser `unknown` si type inconnu
+- Interfaces pour tous les objets métier
+- Types explicites pour les paramètres et retours de fonctions
+
+### React
+- Composants fonctionnels uniquement
+- Hooks personnalisés pour la logique réutilisable
+- React Query pour les données serveur
+- Zustand pour l'état global client
+
+### Styling
+- Tailwind CSS uniquement
+- Respecter la palette de couleurs définie (primary: #0D9488 teal)
+- Utiliser shadcn/ui pour les composants de base
+
+### Sécurité
+- Ne jamais stocker de tokens dans localStorage
+- Valider tous les inputs côté client ET serveur
+- Respecter le RBAC (3 rôles : Praticien, Secrétaire, Admin)
+- Journaliser les accès aux données patients
+
+### IA
+- Toujours marquer visuellement le contenu généré par IA (icône 🤖)
+- Toujours demander validation humaine avant enregistrement
+- Afficher un message d'avertissement sur les contenus IA
+
+## Structure des Fichiers
+```
+src/
+├── components/ui/       # Composants shadcn/ui
+├── components/layout/   # Layout (Sidebar, Header)
+├── features/           # Modules fonctionnels
+├── hooks/              # Hooks personnalisés
+├── stores/             # Zustand stores
+├── types/              # Types globaux
+└── lib/                # Utilitaires
+```
+
+## Conventions de Nommage
+- Composants : `PascalCase.tsx`
+- Hooks : `useCamelCase.ts`
+- Types : `camelCase.types.ts`
+- API : `camelCase.api.ts`
+
+## Réponses en Français
+Réponds toujours en français pour les explications et commentaires de code.
+
+## Priorités
+1. Sécurité des données de santé
+2. UX fluide pour les praticiens
+3. Code propre et maintenable
+4. Performance

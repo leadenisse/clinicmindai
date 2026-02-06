@@ -1,0 +1,6 @@
+export { CalendarPage } from "./pages/CalendarPage"
+export { PatientAppointmentsTab } from "./pages/PatientAppointmentsTab"
+export * from "./types/appointment.types"
+export * from "./hooks/useAppointments"
+export * from "./hooks/useCalendarEvents"
+export { APPOINTMENT_TYPES, APPOINTMENT_STATUSES } from "./constants/appointmentConfig"

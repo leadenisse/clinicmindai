@@ -1,0 +1,7 @@
+export { ProstheticsPage } from "./pages/ProstheticsPage"
+export { ProstheticOrderCreatePage } from "./pages/ProstheticOrderCreatePage"
+export { ProstheticOrderDetailPage } from "./pages/ProstheticOrderDetailPage"
+export { PatientProstheticsTab } from "./pages/PatientProstheticsTab"
+export * from "./types/prosthetics.types"
+export * from "./hooks/useProsthetics"
+export { PROSTHETIC_TYPES, ORDER_STATUSES } from "./constants/prostheticsConfig"

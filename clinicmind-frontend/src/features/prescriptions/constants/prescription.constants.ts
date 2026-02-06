@@ -1,0 +1,263 @@
+import type { PrescriptionTemplate } from "../types/prescription.types"
+
+export const PRESCRIPTION_STATUS = {
+  draft: { label: "Brouillon", color: "gray", icon: "FileEdit" },
+  signed: { label: "Signée", color: "green", icon: "CheckCircle" },
+  sent: { label: "Envoyée", color: "blue", icon: "Send" },
+} as const
+
+export const PRESCRIPTION_CATEGORIES = {
+  antibiotics: { label: "Antibiothérapie", color: "red", icon: "Pill" },
+  pain: { label: "Antalgiques", color: "orange", icon: "Heart" },
+  anti_inflammatory: { label: "Anti-inflammatoires", color: "yellow", icon: "Flame" },
+  antiseptic: { label: "Antiseptiques", color: "teal", icon: "Shield" },
+  post_surgery: { label: "Post-opératoire", color: "purple", icon: "Scissors" },
+  prevention: { label: "Prévention", color: "green", icon: "ShieldCheck" },
+  other: { label: "Autre", color: "gray", icon: "FileText" },
+} as const
+
+export const MEDICATION_FORMS = [
+  { value: "comprime", label: "Comprimé" },
+  { value: "gelule", label: "Gélule" },
+  { value: "sirop", label: "Sirop" },
+  { value: "sachet", label: "Sachet" },
+  { value: "solution", label: "Solution buvable" },
+  { value: "bain_bouche", label: "Bain de bouche" },
+  { value: "gel", label: "Gel" },
+  { value: "pommade", label: "Pommade" },
+  { value: "spray", label: "Spray" },
+  { value: "injectable", label: "Injectable" },
+] as const
+
+export const FREQUENCY_OPTIONS = [
+  { value: "1x/jour", label: "1 fois par jour" },
+  { value: "2x/jour", label: "2 fois par jour" },
+  { value: "3x/jour", label: "3 fois par jour" },
+  { value: "4x/jour", label: "4 fois par jour" },
+  { value: "matin", label: "Le matin" },
+  { value: "soir", label: "Le soir" },
+  { value: "midi", label: "Le midi" },
+  { value: "avant_repas", label: "Avant les repas" },
+  { value: "apres_repas", label: "Après les repas" },
+  { value: "si_douleur", label: "Si douleur" },
+  { value: "custom", label: "Personnalisé" },
+] as const
+
+export const DURATION_OPTIONS = [
+  { value: "3_jours", label: "3 jours" },
+  { value: "5_jours", label: "5 jours" },
+  { value: "7_jours", label: "7 jours" },
+  { value: "10_jours", label: "10 jours" },
+  { value: "14_jours", label: "14 jours" },
+  { value: "1_mois", label: "1 mois" },
+  { value: "continu", label: "Traitement continu" },
+  { value: "custom", label: "Personnalisé" },
+] as const
+
+export const DEFAULT_TEMPLATES: PrescriptionTemplate[] = [
+  {
+    id: "tpl-antibio-amox",
+    name: "Antibiothérapie - Amoxicilline",
+    description: "Prescription standard amoxicilline 1g",
+    category: "antibiotics",
+    isDefault: true,
+    medications: [
+      {
+        name: "Amoxicilline",
+        dosage: "1g",
+        form: "comprime",
+        frequency: "2x/jour",
+        duration: "7_jours",
+        quantity: "1 boîte de 14",
+        instructions: "À prendre pendant les repas",
+        isGeneric: true,
+      },
+    ],
+  },
+  {
+    id: "tpl-antibio-augmentin",
+    name: "Antibiothérapie - Augmentin",
+    description: "Amoxicilline + Acide clavulanique",
+    category: "antibiotics",
+    isDefault: true,
+    medications: [
+      {
+        name: "Amoxicilline/Acide clavulanique",
+        dosage: "1g/125mg",
+        form: "comprime",
+        frequency: "2x/jour",
+        duration: "7_jours",
+        quantity: "1 boîte de 14",
+        instructions: "À prendre au début des repas",
+        isGeneric: true,
+      },
+    ],
+  },
+  {
+    id: "tpl-antibio-azithro",
+    name: "Antibiothérapie - Azithromycine",
+    description: "Alternative en cas d'allergie pénicilline",
+    category: "antibiotics",
+    isDefault: true,
+    medications: [
+      {
+        name: "Azithromycine",
+        dosage: "250mg",
+        form: "comprime",
+        frequency: "1x/jour",
+        duration: "3_jours",
+        quantity: "1 boîte de 6",
+        instructions: "2 comprimés le 1er jour, puis 1/jour",
+        isGeneric: true,
+      },
+    ],
+  },
+  {
+    id: "tpl-douleur-paracetamol",
+    name: "Antalgique - Paracétamol",
+    description: "Douleur légère à modérée",
+    category: "pain",
+    isDefault: true,
+    medications: [
+      {
+        name: "Paracétamol",
+        dosage: "1g",
+        form: "comprime",
+        frequency: "3x/jour",
+        duration: "5_jours",
+        quantity: "1 boîte",
+        instructions: "Espacer les prises de 6h minimum. Max 4g/jour",
+        isGeneric: true,
+      },
+    ],
+  },
+  {
+    id: "tpl-douleur-codeine",
+    name: "Antalgique - Paracétamol/Codéine",
+    description: "Douleur modérée à intense",
+    category: "pain",
+    isDefault: true,
+    medications: [
+      {
+        name: "Paracétamol/Codéine",
+        dosage: "500mg/30mg",
+        form: "comprime",
+        frequency: "3x/jour",
+        duration: "5_jours",
+        quantity: "1 boîte",
+        instructions: "Ne pas conduire. Risque de somnolence.",
+        isGeneric: true,
+      },
+    ],
+  },
+  {
+    id: "tpl-ains-ibuprofene",
+    name: "Anti-inflammatoire - Ibuprofène",
+    description: "AINS classique",
+    category: "anti_inflammatory",
+    isDefault: true,
+    medications: [
+      {
+        name: "Ibuprofène",
+        dosage: "400mg",
+        form: "comprime",
+        frequency: "3x/jour",
+        duration: "5_jours",
+        quantity: "1 boîte",
+        instructions:
+          "À prendre pendant les repas. Contre-indiqué si ulcère gastrique.",
+        isGeneric: true,
+      },
+    ],
+  },
+  {
+    id: "tpl-post-extraction",
+    name: "Post-extraction simple",
+    description: "Kit post-extraction dentaire",
+    category: "post_surgery",
+    isDefault: true,
+    medications: [
+      {
+        name: "Paracétamol",
+        dosage: "1g",
+        form: "comprime",
+        frequency: "3x/jour",
+        duration: "3_jours",
+        quantity: "1 boîte",
+        instructions: "En cas de douleur",
+        isGeneric: true,
+      },
+      {
+        name: "Chlorhexidine",
+        dosage: "0.12%",
+        form: "bain_bouche",
+        frequency: "2x/jour",
+        duration: "7_jours",
+        quantity: "1 flacon",
+        instructions: "Bain de bouche après brossage. Ne pas rincer.",
+        isGeneric: true,
+      },
+    ],
+    instructions:
+      "Ne pas cracher, ne pas fumer pendant 48h. Alimentation tiède et molle.",
+  },
+  {
+    id: "tpl-post-chirurgie",
+    name: "Post-chirurgie complexe",
+    description: "Kit post-chirurgie avec antibiotique",
+    category: "post_surgery",
+    isDefault: true,
+    medications: [
+      {
+        name: "Amoxicilline",
+        dosage: "1g",
+        form: "comprime",
+        frequency: "2x/jour",
+        duration: "7_jours",
+        quantity: "1 boîte de 14",
+        instructions: "À prendre pendant les repas",
+        isGeneric: true,
+      },
+      {
+        name: "Paracétamol/Codéine",
+        dosage: "500mg/30mg",
+        form: "comprime",
+        frequency: "si_douleur",
+        duration: "5_jours",
+        quantity: "1 boîte",
+        instructions: "Maximum 6 comprimés par jour",
+        isGeneric: true,
+      },
+      {
+        name: "Chlorhexidine",
+        dosage: "0.12%",
+        form: "bain_bouche",
+        frequency: "2x/jour",
+        duration: "10_jours",
+        quantity: "1 flacon",
+        instructions: "À partir de J+2",
+        isGeneric: true,
+      },
+    ],
+    instructions: "Glace sur la joue 20min/heure les premières 24h. Repos.",
+  },
+  {
+    id: "tpl-antiseptique",
+    name: "Bain de bouche antiseptique",
+    description: "Chlorhexidine seule",
+    category: "antiseptic",
+    isDefault: true,
+    medications: [
+      {
+        name: "Chlorhexidine",
+        dosage: "0.12%",
+        form: "bain_bouche",
+        frequency: "2x/jour",
+        duration: "14_jours",
+        quantity: "1 flacon",
+        instructions: "Après brossage, garder 30 secondes. Ne pas rincer.",
+        isGeneric: true,
+      },
+    ],
+  },
+]
